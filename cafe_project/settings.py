@@ -119,6 +119,8 @@ SECURE_HSTS_SECONDS = int(os.getenv("SECURE_HSTS_SECONDS", "0"))
 
 
 
+
+
 # Email Configuration - Resend API
 RESEND_API_KEY = os.getenv("RESEND_API_KEY")
 
@@ -134,3 +136,7 @@ EMAIL_HOST_PASSWORD = RESEND_API_KEY
 
 DEFAULT_FROM_EMAIL = "onboarding@resend.dev"
 CAFE_OWNER_EMAIL = os.getenv("CAFE_OWNER_EMAIL")
+
+
+
+RESEND_API_KEY = os.getenv("RESEND_API_KEY")
