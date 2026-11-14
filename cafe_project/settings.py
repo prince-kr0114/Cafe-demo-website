@@ -140,3 +140,11 @@ CAFE_OWNER_EMAIL = os.getenv("CAFE_OWNER_EMAIL")
 
 
 RESEND_API_KEY = os.getenv("RESEND_API_KEY")
+
+
+
+# Brevo Email Configuration
+BREVO_API_KEY = os.getenv("BREVO_API_KEY")
+BREVO_SENDER_EMAIL = os.getenv("BREVO_SENDER_EMAIL")
+
+CAFE_OWNER_EMAIL = os.getenv("CAFE_OWNER_EMAIL")
