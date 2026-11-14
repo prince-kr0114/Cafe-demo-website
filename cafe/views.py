@@ -16,6 +16,7 @@ def home(request):
     return render(request, "cafe/home.html")
 
 
+
 def send_brevo_email(to_email, subject, body, reply_to=None):
     api_key = settings.BREVO_API_KEY
     sender_email = settings.BREVO_SENDER_EMAIL
@@ -28,9 +29,7 @@ def send_brevo_email(to_email, subject, body, reply_to=None):
             "name": "Bean & Bloom Cafe",
             "email": sender_email
         },
-        "to": [
-            {"email": to_email}
-        ],
+        "to": [{"email": to_email}],
         "subject": subject,
         "textContent": body
     }
@@ -38,19 +37,36 @@ def send_brevo_email(to_email, subject, body, reply_to=None):
     if reply_to:
         payload["replyTo"] = {"email": reply_to}
 
-    response = requests.post(
-        "https://api.brevo.com/v3/smtp/email",
-        headers={
-            "accept": "application/json",
-            "api-key": api_key,
-            "content-type": "application/json"
-        },
-        json=payload,
-        timeout=20
-    )
+    try:
+        response = requests.post(
+            "https://api.brevo.com/v3/smtp/email",
+            headers={
+                "accept": "application/json",
+                "api-key": api_key,
+                "content-type": "application/json"
+            },
+            json=payload,
+            timeout=20
+        )
 
-    response.raise_for_status()
-    return response.json()
+        if not response.ok:
+            logger.error(
+                "Brevo API Error: Status=%s, Response=%s",
+                response.status_code,
+                response.text
+            )
+            raise ValueError(
+                f"Brevo rejected email: HTTP {response.status_code}"
+            )
+
+        logger.info("Brevo email accepted: %s", response.text)
+        return response.json()
+
+    except requests.RequestException:
+        logger.exception("Brevo connection failed.")
+        raise
+
+
 
 
 def contact(request):
