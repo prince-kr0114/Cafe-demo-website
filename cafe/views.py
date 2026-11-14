@@ -1,6 +1,6 @@
 
 import logging
-import resend
+import requests
 
 from django.conf import settings
 from django.contrib import messages
@@ -16,23 +16,41 @@ def home(request):
     return render(request, "cafe/home.html")
 
 
-def send_resend_email(to_email, subject, body, reply_to=None):
-    if not settings.RESEND_API_KEY:
-        raise ValueError("Resend API key is not configured.")
+def send_brevo_email(to_email, subject, body, reply_to=None):
+    api_key = settings.BREVO_API_KEY
+    sender_email = settings.BREVO_SENDER_EMAIL
 
-    resend.api_key = settings.RESEND_API_KEY
+    if not api_key or not sender_email:
+        raise ValueError("Brevo API key or sender email is missing.")
 
-    params = {
-        "from": "Bean & Bloom Cafe <onboarding@resend.dev>",
-        "to": [to_email],
+    payload = {
+        "sender": {
+            "name": "Bean & Bloom Cafe",
+            "email": sender_email
+        },
+        "to": [
+            {"email": to_email}
+        ],
         "subject": subject,
-        "text": body,
+        "textContent": body
     }
 
     if reply_to:
-        params["reply_to"] = reply_to
+        payload["replyTo"] = {"email": reply_to}
 
-    return resend.Emails.send(params)
+    response = requests.post(
+        "https://api.brevo.com/v3/smtp/email",
+        headers={
+            "accept": "application/json",
+            "api-key": api_key,
+            "content-type": "application/json"
+        },
+        json=payload,
+        timeout=20
+    )
+
+    response.raise_for_status()
+    return response.json()
 
 
 def contact(request):
@@ -81,30 +99,25 @@ def contact(request):
 
     email_errors = []
 
-    # Send email to cafe owner
+    # Owner notification
     try:
-        if settings.CAFE_OWNER_EMAIL:
-            send_resend_email(
-                settings.CAFE_OWNER_EMAIL,
-                owner_subject,
-                owner_body,
-                reply_to=email
-            )
-        else:
-            email_errors.append("Owner email is not configured.")
-
+        send_brevo_email(
+            settings.CAFE_OWNER_EMAIL,
+            owner_subject,
+            owner_body,
+            reply_to=email
+        )
     except Exception:
         logger.exception("Owner notification email failed.")
         email_errors.append("Owner notification failed.")
 
-    # Send confirmation email to visitor
+    # Customer confirmation
     try:
-        send_resend_email(
+        send_brevo_email(
             email,
             customer_subject,
             customer_body
         )
-
     except Exception:
         logger.exception("Customer confirmation email failed.")
         email_errors.append("Customer confirmation failed.")
@@ -112,8 +125,8 @@ def contact(request):
     if email_errors:
         messages.warning(
             request,
-            "Your enquiry has been saved successfully, "
-            "but email delivery could not be completed."
+            "Your enquiry has been saved, but email delivery could not "
+            "be completed. Please try again later."
         )
     else:
         messages.success(
