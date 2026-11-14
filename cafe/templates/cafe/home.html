@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Bean & Bloom Cafe — handcrafted coffee, fresh bakes and good moments in Prayagraj.">
+  <title>Bean & Bloom Cafe | Coffee, Conversations & Comfort</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'cafe/css/style.css' %}">
+</head>
+<body>
+<header class="site-header">
+  <nav class="nav container">
+    <a class="brand" href="#home"><span class="brand-mark">B<span>&</span>B</span><span class="brand-name">bean & bloom<small>COFFEE HOUSE</small></span></a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    <div class="nav-links" id="navLinks">
+      <a class="active" href="#home">Home</a><a href="#about">About</a><a href="#menu">Menu</a><a href="#contact">Contact</a>
+      <a class="nav-cta" href="#contact">Let's Talk <span>↗</span></a>
+    </div>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-shade"></div>
+  <div class="container hero-content">
+    <p class="eyebrow light"><span></span> YOUR NEIGHBOURHOOD COFFEE HOUSE</p>
+    <h1>Good coffee.<br><em>Better</em> moments.</h1>
+    <p class="hero-copy">A little pause from the rush. Come for the coffee, stay for the conversations, and leave with a smile.</p>
+    <div class="hero-actions"><a class="btn btn-primary" href="#menu">Explore our menu <span>↗</span></a><a class="text-link light-link" href="#about">Our story <span>→</span></a></div>
+    <div class="hero-note"><span class="note-line"></span><span>FRESHLY BREWED · MADE WITH HEART</span></div>
+  </div>
+  <div class="hero-side">SIP SLOW. LIVE WELL.</div>
+  <a class="scroll-cue" href="#about">SCROLL TO DISCOVER <span>↓</span></a>
+</section>
+
+<section class="intro section-pad" id="about">
+  <div class="container intro-grid">
+    <div class="intro-image-wrap">
+      <img class="intro-image" src="https://images.unsplash.com/photo-1445116572660-236099ec97a0?auto=format&fit=crop&w=1000&q=85" alt="Warm and welcoming cafe interior">
+      <div class="image-stamp"><span>EST.</span><strong>2024</strong><small>BREWING<br>HAPPINESS</small></div>
+    </div>
+    <div class="intro-copy">
+      <p class="eyebrow"><span></span> A PLACE TO FEEL GOOD</p>
+      <h2>More than coffee.<br><em>It's a feeling.</em></h2>
+      <p class="muted">At Bean & Bloom, we believe the best moments are often the simplest ones. The first sip of your favourite coffee, a long overdue catch-up, or a quiet afternoon with a book.</p>
+      <p class="muted">We bring together thoughtfully sourced beans, fresh ingredients and a warm space where everyone has a seat at the table.</p>
+      <a class="text-link" href="#contact">Come say hello <span>→</span></a>
+      <div class="stats"><div><strong>12+</strong><span>Signature brews</span></div><div><strong>100%</strong><span>Made with love</span></div><div><strong>7 days</strong><span>Here for you</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="menu-section section-pad" id="menu">
+  <div class="container">
+    <div class="section-heading centered"><p class="eyebrow"><span></span> GOOD THINGS, FRESHLY MADE <span></span></p><h2>A menu to <em>love.</em></h2><p class="muted">Your familiar favourites, with a little Bean & Bloom twist.</p></div>
+    <div class="menu-tabs" role="tablist"><button class="tab active" data-filter="all">All favourites</button><button class="tab" data-filter="coffee">Coffee</button><button class="tab" data-filter="bites">Bites & bakes</button><button class="tab" data-filter="coolers">Coolers</button></div>
+    <div class="menu-grid">
+      <article class="menu-card" data-category="coffee"><div class="food-image"><img src="https://images.unsplash.com/photo- latte?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=700&q=80'" alt="Classic cappuccino"><span class="food-tag">BESTSELLER</span></div><div class="food-info"><div><h3>Classic Cappuccino</h3><p>Rich espresso, silky steamed milk</p></div><strong>₹149</strong></div></article>
+      <article class="menu-card" data-category="coffee"><div class="food-image"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?auto=format&fit=crop&w=700&q=80" alt="Iced caramel latte"></div><div class="food-info"><div><h3>Iced Caramel Latte</h3><p>Espresso, milk & caramel drizzle</p></div><strong>₹179</strong></div></article>
+      <article class="menu-card" data-category="bites"><div class="food-image"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=700&q=80" alt="Fresh croissant"></div><div class="food-info"><div><h3>Butter Croissant</h3><p>Flaky, golden, baked fresh</p></div><strong>₹129</strong></div></article>
+      <article class="menu-card" data-category="bites"><div class="food-image"><img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=700&q=80" alt="Chocolate cake"></div><div class="food-info"><div><h3>Chocolate Truffle</h3><p>Soft layers, rich chocolate ganache</p></div><strong>₹199</strong></div></article>
+      <article class="menu-card" data-category="coolers"><div class="food-image"><img src="https://images.unsplash.com/photo-1513558161293-c18c7e4f6f4?auto=format&fit=crop&w=700&q=80" onerror="this.src='https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=700&q=80'" alt="Fresh berry cooler"></div><div class="food-info"><div><h3>Berry Bloom Cooler</h3><p>Mixed berries, citrus & mint</p></div><strong>₹159</strong></div></article>
+      <article class="menu-card" data-category="coffee"><div class="food-image"><img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?auto=format&fit=crop&w=700&q=80" alt="Espresso coffee"></div><div class="food-info"><div><h3>Double Espresso</h3><p>Bold, balanced and beautiful</p></div><strong>₹119</strong></div></article>
+    </div>
+    <p class="menu-disclaimer">Our menu is a demo. Items and prices can be customised for your cafe.</p>
+  </div>
+</section>
+
+<section class="quote-band"><div class="container quote-inner"><span class="quote-mark">“</span><p>Life happens, coffee helps.<br><em>Make yourself at home.</em></p><span class="quote-coffee">☕</span></div></section>
+
+<section class="contact-section section-pad" id="contact">
+  <div class="container">
+    <div class="section-heading"><p class="eyebrow"><span></span> WE'D LOVE TO HEAR FROM YOU</p><h2>Let's start a <em>conversation.</em></h2><p class="muted">Questions, feedback, or just want to say hello? Drop us a message.</p></div>
+    <div class="contact-grid">
+      <div class="contact-details">
+        <div class="detail-item"><span class="detail-icon">⌖</span><div><small>FIND OUR CAFE</small><strong>Civil Lines, Prayagraj</strong><p>Uttar Pradesh, India</p></div></div>
+        <div class="detail-item"><span class="detail-icon">◷</span><div><small>OPENING HOURS</small><strong>Every day · 9 AM – 10 PM</strong><p>Come by for your daily dose of good coffee.</p></div></div>
+        <div class="detail-item"><span class="detail-icon">✉</span><div><small>EMAIL US</small><strong>hello@beanandbloom.example</strong><p>We usually reply within one working day.</p></div></div>
+        <div class="mini-note"><span>✳</span> Good conversations are always on the house.</div>
+      </div>
+      <div class="form-card">
+        <h3>Send us a message</h3><p class="muted small">Fill in the details and we'll get back to you.</p>
+        {% if messages %}{% for message in messages %}<div class="alert {{ message.tags }}">{{ message }}</div>{% endfor %}{% endif %}
+        <form action="{% url 'contact' %}" method="post">
+          {% csrf_token %}
+          <div class="form-row"><label>Your name *<input type="text" name="name" placeholder="e.g. Rahul Sharma" maxlength="100" required></label><label>Email address *<input type="email" name="email" placeholder="you@example.com" required></label></div>
+          <div class="form-row"><label>Phone number<input type="tel" name="phone" placeholder="+91 98765 43210" maxlength="20"></label><label>Subject *<select name="subject" required><option value="">Choose a subject</option><option>General enquiry</option><option>Menu & pricing</option><option>Feedback</option><option>Private event</option><option>Other</option></select></label></div>
+          <label>Your message *<textarea name="message" rows="4" placeholder="Write your message here..." required></textarea></label>
+          <button class="btn btn-primary submit-btn" type="submit">Send message <span>↗</span></button>
+          <p class="privacy-note">Your details are only used to respond to your enquiry.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="location-section">
+  <div class="container location-head"><div><p class="eyebrow"><span></span> COME FIND YOUR CORNER</p><h2>Meet us <em>here.</em></h2></div><p class="muted">A warm cup is never too far away.</p></div>
+  <div class="map-wrap"><iframe title="Map showing Civil Lines, Prayagraj" src="https://www.google.com/maps?q=Civil%20Lines%2C%20Prayagraj%2C%20Uttar%20Pradesh&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe><div class="map-label"><span>⌖</span><div><strong>Bean & Bloom Cafe</strong><small>Civil Lines, Prayagraj, UP</small></div></div></div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-main">
+    <div class="footer-brand"><a class="brand brand-light" href="#home"><span class="brand-mark">B<span>&</span>B</span><span class="brand-name">bean & bloom<small>COFFEE HOUSE</small></span></a><p>Good coffee, kind people<br>and moments worth slowing down for.</p></div>
+    <div><h4>Explore</h4><a href="#home">Home</a><a href="#about">Our story</a><a href="#menu">Our menu</a><a href="#contact">Contact</a></div>
+    <div><h4>Visit us</h4><p>Civil Lines, Prayagraj<br>Uttar Pradesh, India</p><p>Daily · 9 AM – 10 PM</p></div>
+    <div><h4>Stay in the loop</h4><p>Follow the aroma and find your new favourite.</p><a class="footer-social" href="https://instagram.com/" target="_blank" rel="noopener">Instagram ↗</a></div>
+  </div>
+  <div class="container footer-bottom"><span>© 2026 Bean & Bloom Cafe. All rights reserved.</span><span>BREWED WITH ♥ IN PRAYAGRAJ</span></div>
+</footer>
+<script src="{% static 'cafe/js/main.js' %}"></script>
+</body>
+</html>
